@@ -1,0 +1,80 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mytodo</title>
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+    
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="/bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+  </head>
+  <body>
+    <!--[if IE]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <main role="main">
+
+      <header>
+
+        <h1>
+          Todo List
+          <span>Get things done, one item at a time.</span>
+        </h1>
+
+      </header>
+
+      <section>
+
+        <form class="flex form">
+          <label for="newitem">Add to the todo list</label>
+          <input class="task-title" name="title" placeholder="What needs to be done?" autocomplete="off" autofocus>
+          <input class="task-description" name="description" placeholder="What needs to be done?" autocomplete="off" autofocus>
+          <input class="task-date" pattern="\d{1,2}/\d{1,2}/\d{4}" name="date" placeholder="MM/DD/YYYY" autocomplete="off" autofocus>
+        </form>
+
+        <ul class="todo-list"></ul>
+
+      </section>
+
+      <footer id="filters" class="flex">
+
+        <button id="allTasks">All tasks</button>
+        <button id="today">due today</button>
+        <button id="tomorrow">due tomorrow</button>
+        <button id="overdue">overdue</button>
+        <button>done tasks</button>
+        <button>Filter 4</button>
+
+      </footer>
+
+    </main>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/modernizr/modernizr.js"></script>
+    <script src="/bower_components/moment/moment.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/helper.js"></script>
+    <script src="scripts/model.js"></script>
+    <script src="scripts/view.js"></script>
+    <script src="scripts/controller.js"></script>
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>
