@@ -65,11 +65,25 @@ section {
         &:first-of-type{
           padding-left: 2.3rem;
       }
+      span{
+        font-size: 0.5rem;
+      }
     }
     button {
       border: none;
       background: transparent;
       color: $main-white;
+    }
+    .overdue{
+      color: red;
+      button{
+        color: red;
+      }
+    }
+    .checked{
+      p{
+        background-image: linear-gradient(transparent 1.1ex, $main-white 1.2ex, $main-white 1.3ex, transparent 0.5ex);
+      }
     }
   }
 

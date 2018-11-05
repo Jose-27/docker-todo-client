@@ -7,21 +7,27 @@ function Controller(model, view) {
     self.model = model;
     self.view  = view;
 
-    self.view.bind('create', function (data) {
-        self.addItem(data)
+    this.view.bind('create', function (data) {
+        self.addItem(data);
     });
 
-    self.view.bind('getAll', function () {
+    this.view.bind('getAll', function () {
         self.model.getAll();
     });
 
-    $on(self.view.$todoList, 'click', function (event) {
+    $on(this.view.$todoList, 'click', function (event) {
         if(event.target.id === 'removed'){
             self.deletedTask(event.target.parentElement.getAttribute('data-id'));
+        }else if(event.target.type === 'checkbox'){
+            if(event.target.checked){
+                event.target.parentNode.classList.add('checked');
+            }else{
+                event.target.parentNode.classList.remove('checked');
+            }
         }
     });
 
-    $on(self.view.$filters, 'click', function (event) {
+    $on(this.view.$filters, 'click', function (event) {
 
         var filterByDay = event.target.id === 'today'    || 
                           event.target.id === 'tomorrow' || 
@@ -29,10 +35,12 @@ function Controller(model, view) {
         
         if(filterByDay){
             self.dateFilter(event.target.id);
+        }else if (event.target.id === 'allTasks'){
+            self.showAllTasks();
         }
     });
-}
 
+}
 
 Controller.prototype.addItem = function (data) {
     var self = this;
@@ -72,7 +80,10 @@ Controller.prototype.dateFilter = function (type) {
     var showDueToday = this.view.$arr.filter(function (elm) {
         return $dateWizard(elm.due_date) === type;
     });
-   this.view.render(showDueToday);
+
+    if (showDueToday.length > 0){
+        this.view.render(showDueToday);
+    }
 };
 
 // Export to window

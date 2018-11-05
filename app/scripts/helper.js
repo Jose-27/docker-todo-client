@@ -19,6 +19,7 @@
         var today     = moment().startOf('day');
         var yesterday = moment().subtract(1, 'days').startOf('day');
         var tomorrow  = moment().add(1, 'days').startOf('day');
+        var overdue   = moment(date).isBefore(today, 'd');
 
         if (date === null) {return};
 
@@ -28,6 +29,8 @@
             return 'yesterday';// yesterday
         else if (moment(date).isSame(tomorrow, 'd'))
             return 'tomorrow';// tomorrow
+        else if (overdue)
+            return 'overdue';
         else
             return date;
     }

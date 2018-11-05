@@ -1,0 +1,10 @@
+version: "3"
+services:
+  app:
+    container_name: docker-todo-client
+    # if fails restart app
+    restart: always
+    # check for a docker file in the root directory
+    build: .
+    ports:
+      - '9000:9000'

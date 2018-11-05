@@ -5,13 +5,14 @@ function View() {
     this.$form      = qs('.form');
     this.$todoList  = qs('.todo-list');
     this.$filters   = qs('#filters');
+    this.$checkbox  = qs('input[name=checkbox]');
     this.$arr       = new Array();
     this.ENTER_KEY  = 13;
     this.ESCAPE_KEY = 27;
 
     this.defaultTemplate
     =	'<li data-id="{{id}}" class="flex {{completed}}">'
-    +	    '<input class="toggle" type="checkbox" {{checked}}>'
+    +	    '<input class="toggle" type="checkbox" onload="clicked">'
     +           '<p>{{title}}</p>'
     +           '<p>{{description}}</p>'
     +           '<p>{{date}}</p>'
@@ -24,19 +25,20 @@ View.prototype.show = function (data) {
     
     for (var i=0; i < data.length; i++) {
         
-        var template  = this.defaultTemplate;
-        var completed = '';
-        var checked   = '';
+        var date = $dateWizard(data[i].due_date) === 'overdue'? data[i].due_date+' overdue':$dateWizard(data[i].due_date),
+            template  = this.defaultTemplate,
+            completed = '',
+            checked   = '';
 
         if (data[i].completed) {
             completed = 'completed';
             checked = 'checked';
         }
-
+        
         template = template.replace('{{id}}', data[i]._id);
         template = template.replace('{{title}}', data[i].title);
         template = template.replace('{{description}}', data[i].description);
-        template = template.replace('{{date}}', $dateWizard(data[i].due_date));
+        template = template.replace('{{date}}', date);
         template = template.replace('{{completed}}', completed);
         template = template.replace('{{checked}}', checked);
 
